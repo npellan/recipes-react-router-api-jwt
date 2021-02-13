@@ -6,16 +6,13 @@ import Home from 'src/components/Home';
 // import Recipe from 'src/components/Recipe';
 // import Error from 'src/components/Error';
 
-import recipesTest from 'src/data';
+import recipes from 'src/data';
 
 import Loading from './Loading';
 
 import './style.scss';
 
 function App(props) {
-  const recipes = {
-    list: recipesTest,
-  };
   if (props.loading) {
     return <Loading />;
   }
