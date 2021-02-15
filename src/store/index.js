@@ -1,19 +1,11 @@
 /* eslint-disable no-underscore-dangle */
-import { createStore, applyMiddleware, compose } from 'redux';
-import dataMiddleware from 'src/middlewares/data';
-import reducer from './reducer';
+import { createStore } from 'redux';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import rootReducer from 'src/reducers';
 
-// On créé le store en lui donnant le reducer afin transformer les actions
-// en changement d'état, et pour calculer aussi l'état initial
 const store = createStore(
-  reducer, /* preloadedState, */
-  composeEnhancers(
-    applyMiddleware(
-      dataMiddleware,
-    ),
-  ),
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export default store;
