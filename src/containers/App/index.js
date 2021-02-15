@@ -3,16 +3,15 @@ import { connect } from 'react-redux';
 import App from 'src/components/App';
 
 import {
-  getRecipes,
-} from 'src/actions';
+  fetchRecipes,
+} from 'src/actions/recipes';
 
 const mapStateToProps = (state) => ({
-  loading: state.loading,
-  recipes: state.recipes,
+  loading: state.recipes.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getRecipes: (recipes) => dispatch(getRecipes(recipes)),
+  fetchRecipes: () => dispatch(fetchRecipes()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

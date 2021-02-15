@@ -1,11 +1,17 @@
 /* eslint-disable no-underscore-dangle */
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware} from 'redux';
 
+import recipeMiddleware from 'src/middlewares/recipes';
 import rootReducer from 'src/reducers';
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancers = composeEnhancers(
+  applyMiddleware(
+    recipeMiddleware,
+  ),
 );
+
+const store = createStore(rootReducer, enhancers);
 
 export default store;

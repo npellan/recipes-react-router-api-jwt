@@ -1,38 +1,28 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import {
-  Switch,
   Route,
+  Switch,
 } from 'react-router-dom';
 
-import store from 'src/store';
-
-import {
-  getRecipes,
-} from 'src/actions';
-
 import Menu from 'src/containers/Menu';
-import Home from 'src/containers/Home';
-import Recipe from 'src/components/Recipe';
+import Home from 'src/components/Home';
+import Recipe from 'src/containers/Recipe';
 import Error from 'src/components/Error';
-
-// import recipes from 'src/data';
-import {
-  findRecipeBySlug,
-} from 'src/selectors';
 
 import Loading from './Loading';
 
 import './style.scss';
 
-function App({ loading, recipes }) {
+function App({ loading, fetchRecipes }) {
+  useEffect(() => {
+    // On demande à récupérer la donnée
+    // Pour ca je dois donc déclencher une intention de récupération de données
+    fetchRecipes();
+  }, []);
   if (loading) {
     return <Loading />;
   }
-
-  useEffect(() => store.dispatch(getRecipes()), []);
-
   return (
     <div className="app">
       <Menu />
@@ -40,14 +30,9 @@ function App({ loading, recipes }) {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route
-          path="/recipe/:slug"
-          render={({ match }) => {
-            const { params: { slug } } = match;
-            const foundRecipe = findRecipeBySlug(recipes, slug);
-            return <Recipe recipe={foundRecipe} />;
-          }}
-        />
+        <Route path="/recipe/:slug">
+          <Recipe />
+        </Route>
         <Route>
           <Error />
         </Route>
@@ -58,7 +43,7 @@ function App({ loading, recipes }) {
 
 App.propTypes = {
   loading: PropTypes.bool,
-  recipes: PropTypes.array.isRequired,
+  fetchRecipes: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

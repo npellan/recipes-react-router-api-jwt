@@ -1,13 +1,11 @@
-import {
-  GET_RECIPES,
-  setRecipes,
-} from 'src/actions';
+/* eslint-disable no-empty */
 
+import { FETCH_RECIPES, setRecipes } from 'src/actions/recipes';
 import axios from 'src/api';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
-    case GET_RECIPES:
+    case FETCH_RECIPES:
       axios.get('/recipes')
         .then((result) => {
           store.dispatch(setRecipes(result.data));

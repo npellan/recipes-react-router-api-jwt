@@ -1,13 +1,10 @@
 import { connect } from 'react-redux';
-
 import Menu from 'src/components/Menu';
 
 const mapStateToProps = (state) => ({
-  recipes: state.recipes,
+  recipes: state.recipes.list,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-});
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
