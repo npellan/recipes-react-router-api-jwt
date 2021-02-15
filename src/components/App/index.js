@@ -18,6 +18,9 @@ import Recipe from 'src/components/Recipe';
 import Error from 'src/components/Error';
 
 // import recipes from 'src/data';
+import {
+  findRecipeBySlug,
+} from 'src/selectors';
 
 import Loading from './Loading';
 
@@ -37,11 +40,14 @@ function App({ loading, recipes }) {
         <Route path="/" exact>
           <Home />
         </Route>
-        {recipes.map((recipe) => (
-          <Route path={`/recipe/${recipe.slug}`} exact key={recipe.id}>
-            <Recipe recipe={recipe} />
-          </Route>
-        ))}
+        <Route
+          path="/recipe/:slug"
+          render={({ match }) => {
+            const { params: { slug } } = match;
+            const foundRecipe = findRecipeBySlug(recipes, slug);
+            return <Recipe recipe={foundRecipe} />;
+          }}
+        />
         <Route>
           <Error />
         </Route>
