@@ -1,23 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Page from 'src/components/Page';
 import AppHeader from 'src/components/AppHeader';
-import Content from 'src/components/Content';
+import Content from 'src/containers/Content';
 
-const Home = ({ recipes }) => (
+const Home = () => (
   <Page>
     <AppHeader />
-    <Content
-      title="Les recettes oRecipes"
-      text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, explicabo."
-      recipes={recipes}
-    />
+    <Content />
   </Page>
 );
-
-Home.propTypes = {
-  recipes: PropTypes.array.isRequired,
-};
 
 export default Home;

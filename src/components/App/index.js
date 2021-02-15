@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -6,27 +6,36 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Menu from 'src/components/Menu';
-import Home from 'src/components/Home';
+import store from 'src/store';
+
+import {
+  getRecipes,
+} from 'src/actions';
+
+import Menu from 'src/containers/Menu';
+import Home from 'src/containers/Home';
 import Recipe from 'src/components/Recipe';
 import Error from 'src/components/Error';
 
-import recipes from 'src/data';
+// import recipes from 'src/data';
 
 import Loading from './Loading';
 
 import './style.scss';
 
-function App({ loading }) {
+function App({ loading, recipes }) {
   if (loading) {
     return <Loading />;
   }
+
+  useEffect(() => store.dispatch(getRecipes()), []);
+
   return (
     <div className="app">
-      <Menu recipes={recipes} />
+      <Menu />
       <Switch>
         <Route path="/" exact>
-          <Home recipes={recipes} />
+          <Home />
         </Route>
         {recipes.map((recipe) => (
           <Route path={`/recipe/${recipe.slug}`} exact key={recipe.id}>
@@ -43,6 +52,7 @@ function App({ loading }) {
 
 App.propTypes = {
   loading: PropTypes.bool,
+  recipes: PropTypes.array.isRequired,
 };
 
 App.defaultProps = {
