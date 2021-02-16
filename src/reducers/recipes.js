@@ -3,7 +3,7 @@ import {
   SET_RECIPES,
 } from 'src/actions/recipes';
 
-const initialState = {
+export const initialState = {
   list: [],
   loading: false,
 };
