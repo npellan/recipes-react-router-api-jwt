@@ -19,7 +19,7 @@ describe('reducer for recipes', () => {
       const newRecipes = [{ title: 'Recipe 1' }, { title: 'Recipe 2' }];
       const action = setRecipes(newRecipes);
       const newState = recipeReducer(initialState, action);
-      expect(newState).to.be.eql({ list: newRecipes, loading: false });
+      expect(newState).to.be.eql({ list: newRecipes, loading: true });
     });
   });
 });

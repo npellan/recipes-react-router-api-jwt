@@ -5,7 +5,7 @@ import {
 
 export const initialState = {
   list: [],
-  loading: false,
+  loading: true,
 };
 
 export default (state = initialState, action = {}) => {
