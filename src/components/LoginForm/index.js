@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Field from './Field';
 // import { useField } from './hooks';
 
-import './styles.css';
+import './styles.scss';
 
 const LoginForm = ({
   email,
