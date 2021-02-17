@@ -44,6 +44,9 @@ Le serveur se lance sur le port 3001.
     password: 'bonnebouffe'
 }
 ```
+- `GET http://localhost:3001/recipes`
+
+=> pour cette route, un JWT est nécessaire, il est en place dans l'app
 
 #### Frontend
 
