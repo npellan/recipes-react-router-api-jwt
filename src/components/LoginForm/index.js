@@ -14,6 +14,8 @@ const LoginForm = ({
   handleLogout,
   isLogged,
   loggedMessage,
+  loading,
+  pseudo,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -25,7 +27,7 @@ const LoginForm = ({
       {isLogged && (
         <div className="login-form-logged">
           <p className="login-form-message">
-            {loggedMessage}
+            {loggedMessage} en tant que {pseudo}
           </p>
           <button
             type="button"
@@ -54,9 +56,10 @@ const LoginForm = ({
           />
           <button
             type="submit"
+            disabled={loading}
             className="login-form-button"
           >
-            OK
+            {!loading ? 'OK' : 'Chargement...'}
           </button>
         </form>
       )}
@@ -72,11 +75,15 @@ LoginForm.propTypes = {
   handleLogout: PropTypes.func.isRequired,
   isLogged: PropTypes.bool,
   loggedMessage: PropTypes.string,
+  loading: PropTypes.bool,
+  pseudo: PropTypes.string,
 };
 
 LoginForm.defaultProps = {
   isLogged: false,
   loggedMessage: 'Connecté',
+  loading: false,
+  pseudo: '',
 };
 
 export default LoginForm;
