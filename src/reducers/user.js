@@ -6,11 +6,12 @@ import {
 } from 'src/actions/user';
 
 const initialState = {
-  email: 'bouclierman@herocorp.io',
-  password: 'jennifer',
+  email: 'philippe.etchebest@cuisine.io',
+  password: 'bonnebouffe',
   isLogged: false,
   userLoading: false,
   pseudo: null,
+  token: null,
 };
 
 export default (state = initialState, action = {}) => {
@@ -25,12 +26,14 @@ export default (state = initialState, action = {}) => {
         ...state,
         isLogged: true,
         pseudo: action.pseudo,
+        token: action.token,
       };
     case LOGOUT:
       return {
         ...state,
         isLogged: false,
         pseudo: '',
+        token: '',
       };
     case SET_USER_LOADING_STATE:
       return {

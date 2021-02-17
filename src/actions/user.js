@@ -25,9 +25,10 @@ export const sendLogin = () => ({
 /**
  * Action qui met à jour isLogged (à true) dans le store
  */
-export const login = (pseudo) => ({
+export const login = (pseudo, token) => ({
   type: LOGIN,
   pseudo,
+  token,
 });
 
 /**

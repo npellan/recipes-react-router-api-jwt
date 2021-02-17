@@ -11,7 +11,7 @@ export default (store) => (next) => (action) => {
       axios.post('/login', { email, password })
         .then((result) => {
           if (result.data.logged === true) {
-            store.dispatch(login(result.data.pseudo));
+            store.dispatch(login(result.data.pseudo, result.data.token));
           }
         })
         .catch((error) => {
